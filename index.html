@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asking for Help & Clarification | Advanced English Lesson</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --primary-light: #2980b9;
+    --accent: #e67e22;
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --muted: #7f8c8d;
+    --border: #e0e6ed;
+    --success: #27ae60;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 90px;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 24px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  header h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  header .subtitle { font-size: 0.95rem; opacity: 0.9; }
+  header .level { 
+    display: inline-block; 
+    background: rgba(255,255,255,0.2); 
+    padding: 2px 12px; 
+    border-radius: 20px; 
+    font-size: 0.8rem; 
+    margin-top: 8px;
+  }
+  nav {
+    display: flex;
+    overflow-x: auto;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 10px;
+    position: sticky;
+    top: 110px;
+    z-index: 90;
+  }
+  nav button {
+    flex: 0 0 auto;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    font-size: 0.9rem;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  nav button.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    font-weight: 600;
+  }
+  nav button:hover { color: var(--primary); }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 { font-size: 1.05rem; margin: 16px 0 8px; color: var(--primary-light); }
+  .ko { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+  .en { font-weight: 500; }
+  .vocab-item {
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background: #fef9f3;
+    border-radius: 0 8px 8px 0;
+  }
+  .vocab-item .word { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+  .example { 
+    background: #f0f7ff; 
+    padding: 10px 14px; 
+    border-radius: 8px; 
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .pattern-box {
+    background: linear-gradient(135deg, #eaf2f8, #d4e6f1);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .pattern-box .main { font-size: 1.15rem; font-weight: 600; color: var(--primary); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  button.speak, button.speak-ko, button.read-all {
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+  }
+  button.speak { background: var(--primary); color: white; }
+  button.speak:hover { background: var(--primary-light); }
+  button.speak-ko { background: #27ae60; color: white; }
+  button.speak-ko:hover { background: #219a52; }
+  button.read-all {
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+  }
+  button.read-all:hover { background: #d35400; }
+  button.speak.playing, button.speak-ko.playing, button.read-all.playing {
+    background: #c0392b;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+  .answer-box {
+    background: #eafaf1;
+    border: 1px solid #a9dfbf;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 10px;
+  }
+  .answer-box .label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--success);
+    margin-bottom: 6px;
+  }
+  .discussion-q {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  .discussion-q:last-child { border-bottom: none; }
+  .toggle-answer {
+    background: none;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-answer:hover { background: var(--primary); color: white; }
+  .hidden { display: none; }
+  .tip {
+    background: #fef5e7;
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.95rem;
+  }
+  .gospel-option {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+  .gospel-option:hover {
+    border-color: var(--primary);
+    background: #f0f7ff;
+  }
+  .gospel-option h3 { margin-top: 0; }
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    flex: 1;
+    margin: 0 16px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.3s;
+  }
+  .voice-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .voice-controls label { font-size: 0.85rem; color: var(--muted); }
+  select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .section-read-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #fff8f0;
+    border: 1px solid #f5cba7;
+    border-radius: 10px;
+    align-items: center;
+  }
+  .section-read-bar span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .activity-steps { counter-reset: step; }
+  .activity-steps li {
+    list-style: none;
+    position: relative;
+    padding-left: 36px;
+    margin-bottom: 12px;
+  }
+  .activity-steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.25rem; }
+    nav { top: 100px; }
+    .container { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Asking for Help & Clarification</h1>
+  <div class="subtitle">도움 요청하기 & 명확히 하기</div>
+  <div class="level">Advanced · 9/20/26 – 9/26/26</div>
+</header>
+
+<nav id="nav">
+  <button class="active" data-section="overview">Overview</button>
+  <button data-section="warmup">Warm-up</button>
+  <button data-section="vocab">Vocabulary</button>
+  <button data-section="grammar">Grammar</button>
+  <button data-section="activity">Activity</button>
+  <button data-section="discussion">Discussion</button>
+  <button data-section="review">Review</button>
+  <button data-section="gospel">Gospel</button>
+</nav>
+
+<div class="container">
+  <!-- Voice Controls -->
+  <div class="voice-controls card" style="margin-top:16px;">
+    <label>🔊 American English (en-US):</label>
+    <select id="enVoice"></select>
+    <label>🔊 한국어 (ko-KR):</label>
+    <select id="koVoice"></select>
+    <button class="speak" onclick="stopSpeaking()" style="background:#c0392b;">⏹ Stop</button>
+  </div>
+
+  <!-- ========== OVERVIEW ========== -->
+  <div id="overview" class="section active">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('overview','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('overview','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Lesson Overview. Weekly Theme: Asking for Help and Clarification. Our Hour Together: one, Warm-up question. two, Vocabulary and phrases. three, Grammar pattern. four, Group activity. five, Discussion. six, A short message to close."
+         data-ko="수업 개요. 주간 주제: 도움 요청하기 그리고 명확히 하기. 오늘 함께할 순서: 하나, 워밍업 질문. 둘, 어휘와 표현. 셋, 문법 패턴. 넷, 그룹 활동. 다섯, 토론. 여섯, 마무리 메시지.">
+      <h2>📌 Lesson Overview <span class="ko">수업 개요</span></h2>
+      <p class="en"><strong>Weekly Theme:</strong> Asking for Help & Clarification</p>
+      <p class="ko">주간 주제: 도움 요청하기 & 명확히 하기</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Asking for Help and Clarification', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('도움 요청하기 그리고 명확히 하기', 'ko')">🔊 KO</button>
+      </div>
+
+      <h3>Our Hour Together <span class="ko">오늘 함께할 순서</span></h3>
+      <ol style="padding-left:20px; margin-top:8px;">
+        <li>Warm-up question <span class="ko">워밍업 질문</span></li>
+        <li>Vocabulary & phrases <span class="ko">어휘 & 표현</span></li>
+        <li>Grammar pattern <span class="ko">문법 패턴</span></li>
+        <li>Group activity <span class="ko">그룹 활동</span></li>
+        <li>Discussion <span class="ko">토론</span></li>
+        <li>A short message to close <span class="ko">마무리 메시지</span></li>
+      </ol>
+    </div>
+
+    <div class="card" data-en="Cultural Fun Fact. In American workplaces, asking clarifying questions during a meeting is usually seen as a sign of genuine engagement, not a lack of understanding. In other cultures, however, asking too many questions in front of a group can feel like challenging authority, which leads to very different norms around when and how people ask for clarification. Is this similar or different in Korea?"
+         data-ko="문화 재미 사실. 미국 직장에서는 회의 중에 명확히 하는 질문을 하는 것이 보통 이해 부족이 아니라 진정한 참여의 표시로 여겨집니다. 하지만 다른 문화권에서는 그룹 앞에서 질문을 너무 많이 하는 것이 권위에 도전하는 것처럼 느껴질 수 있어서, 언제 어떻게 명확히 물어보는지에 대한 규범이 매우 다릅니다. 한국에서는 어떤가요? 비슷한가요, 다른가요?">
+      <h2>🌍 Cultural Fun Fact <span class="ko">문화 재미 사실</span></h2>
+      <p class="en">In American workplaces, asking clarifying questions during a meeting is usually seen as a sign of genuine engagement, not a lack of understanding. In other cultures, however, asking too many questions in front of a group can feel like challenging authority — which leads to very different norms around when and how people ask for clarification.</p>
+      <p class="ko">미국 직장에서는 회의 중에 명확히 하는 질문을 하는 것이 보통 이해 부족이 아니라 진정한 참여의 표시로 여겨집니다. 하지만 다른 문화권에서는 그룹 앞에서 질문을 너무 많이 하는 것이 권위에 도전하는 것처럼 느껴질 수 있어서, 언제 어떻게 명확히 물어보는지에 대한 규범이 매우 다릅니다.</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak(this.closest('.card').querySelector('.en').textContent, 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak(this.closest('.card').querySelector('.ko').textContent, 'ko')">🔊 KO</button>
+      </div>
+      <div class="tip">💬 한국에서는 어떤가요? 비슷한가요, 다른가요? <span class="en" style="font-weight:normal;">(Is this similar or different in Korea?)</span></div>
+    </div>
+  </div>
+
+  <!-- ========== WARM-UP ========== -->
+  <div id="warmup" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('warmup','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('warmup','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Warm-Up Question. How do you usually ask for clarification in a professional or academic setting without feeling embarrassed? Model Answer: I usually say something like, Sorry, could you go over that last point again? or Just to make sure I understand, are you saying…? It feels more natural and less embarrassing when I frame it as wanting to be accurate rather than admitting I didn’t catch it."
+         data-ko="워밍업 질문. 전문적이거나 학술적인 상황에서 부끄러워하지 않고 보통 어떻게 명확히 물어보나요? 모범 답안: 보통 죄송한데, 마지막 부분 다시 한 번 설명해 주시겠어요? 또는 제가 제대로 이해했는지 확인하고 싶은데, 라고 하시는 건가요? 라고 말합니다. 못 알아들었다기보다 정확하게 이해하고 싶다는 식으로 말하면 덜 부끄럽고 자연스럽게 느껴집니다.">
+      <h2>🔥 Warm-Up Question <span class="ko">워밍업 질문</span></h2>
+      <p class="en" style="font-size:1.15rem; font-weight:500;">How do you usually ask for clarification in a professional or academic setting without feeling embarrassed?</p>
+      <p class="ko">전문적이거나 학술적인 상황에서 부끄러워하지 않고 보통 어떻게 명확히 물어보나요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('How do you usually ask for clarification in a professional or academic setting without feeling embarrassed?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('전문적이거나 학술적인 상황에서 부끄러워하지 않고 보통 어떻게 명확히 물어보나요?', 'ko')">🔊 KO</button>
+      </div>
+
+      <h3>💡 Model Answer <span class="ko">모범 답안</span></h3>
+      <div class="answer-box">
+        <div class="label">English</div>
+        <p>I usually say something like, “Sorry, could you go over that last point again?” or “Just to make sure I understand, are you saying…?” It feels more natural and less embarrassing when I frame it as wanting to be accurate rather than admitting I didn’t catch it.</p>
+      </div>
+      <div class="answer-box" style="background:#fef9f3; border-color:#f5cba7;">
+        <div class="label" style="color:var(--accent);">한국어 번역</div>
+        <p>보통 “죄송한데, 마지막 부분 다시 한 번 설명해 주시겠어요?” 또는 “제가 제대로 이해했는지 확인하고 싶은데, …라고 하시는 건가요?”라고 말합니다. 못 알아들었다기보다 정확하게 이해하고 싶다는 식으로 말하면 덜 부끄럽고 자연스럽게 느껴집니다.</p>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('I usually say something like, Sorry, could you go over that last point again? or Just to make sure I understand, are you saying…? It feels more natural and less embarrassing when I frame it as wanting to be accurate rather than admitting I didn’t catch it.', 'en')">🔊 EN Answer</button>
+        <button class="speak-ko" onclick="speak('보통 죄송한데, 마지막 부분 다시 한 번 설명해 주시겠어요? 또는 제가 제대로 이해했는지 확인하고 싶은데, 라고 하시는 건가요? 라고 말합니다. 못 알아들었다기보다 정확하게 이해하고 싶다는 식으로 말하면 덜 부끄럽고 자연스럽게 느껴집니다.', 'ko')">🔊 KO Answer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== VOCABULARY ========== -->
+  <div id="vocab" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('vocab','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('vocab','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Vocabulary and Phrases. Listen to each word and repeat. Then make your own sentences."
+         data-ko="어휘와 표현. 각 단어를 듣고 따라 말해 보세요. 그다음 자신만의 문장을 만들어 보세요.">
+      <h2>📚 Vocabulary & Phrases <span class="ko">어휘 & 표현</span></h2>
+      <p class="en">Listen to each word and repeat. Then make your own sentences with a few of them.</p>
+      <p class="ko">각 단어를 듣고 따라 말해 보세요. 그다음 자신만의 문장을 만들어 보세요.</p>
+    </div>
+
+    <!-- 1 -->
+    <div class="card vocab-item" data-en="one. to lose track of something. To stop following or understanding something. Example: Sorry, I lost track of what you were saying."
+         data-ko="하나. 투 루즈 트랙 오브 썸씽. 무엇을 따라가거나 이해하는 것을 놓치다. 예문: 죄송해요, 말씀하신 내용을 놓쳤어요.">
+      <div class="word">1. to lose track (of something)</div>
+      <p class="en">To stop following or understanding something</p>
+      <p class="ko">무엇을 따라가거나 이해하는 것을 놓치다</p>
+      <div class="example">
+        <span class="en">“Sorry, I lost track of what you were saying.”</span><br>
+        <span class="ko">“죄송해요, 말씀하신 내용을 놓쳤어요.”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('to lose track of something. To stop following or understanding something. Sorry, I lost track of what you were saying.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('투 루즈 트랙. 무엇을 따라가거나 이해하는 것을 놓치다. 죄송해요, 말씀하신 내용을 놓쳤어요.', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card vocab-item" data-en="two. to rephrase. To say something again in different words. Example: Could you rephrase that question?"
+         data-ko="둘. 투 리프레이즈. 다른 말로 다시 표현하다. 예문: 그 질문을 다른 말로 다시 해주시겠어요?">
+      <div class="word">2. to rephrase</div>
+      <p class="en">To say something again in different words</p>
+      <p class="ko">다른 말로 다시 표현하다</p>
+      <div class="example">
+        <span class="en">“Could you rephrase that question?”</span><br>
+        <span class="ko">“그 질문을 다른 말로 다시 해주시겠어요?”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('to rephrase. To say something again in different words. Could you rephrase that question?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('투 리프레이즈. 다른 말로 다시 표현하다. 그 질문을 다른 말로 다시 해주시겠어요?', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card vocab-item" data-en="three. ambiguous. Unclear or open to more than one meaning. Example: That instruction was a bit ambiguous."
+         data-ko="셋. 앰비규어스. 모호한, 여러 의미로 해석될 수 있는. 예문: 그 지시가 조금 모호했어요.">
+      <div class="word">3. ambiguous</div>
+      <p class="en">Unclear or open to more than one meaning</p>
+      <p class="ko">모호한, 여러 의미로 해석될 수 있는</p>
+      <div class="example">
+        <span class="en">“That instruction was a bit ambiguous.”</span><br>
+        <span class="ko">“그 지시가 조금 모호했어요.”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('ambiguous. Unclear or open to more than one meaning. That instruction was a bit ambiguous.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('앰비규어스. 모호한, 여러 의미로 해석될 수 있는. 그 지시가 조금 모호했어요.', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card vocab-item" data-en="four. to clarify. To make something clearer or more specific. Example: Let me clarify what I meant by that."
+         data-ko="넷. 투 클래리파이. 더 명확하게 하거나 구체적으로 만들다. 예문: 그게 무슨 뜻이었는지 명확히 설명드릴게요.">
+      <div class="word">4. to clarify</div>
+      <p class="en">To make something clearer or more specific</p>
+      <p class="ko">더 명확하게 하거나 구체적으로 만들다</p>
+      <div class="example">
+        <span class="en">“Let me clarify what I meant by that.”</span><br>
+        <span class="ko">“그게 무슨 뜻이었는지 명확히 설명드릴게요.”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('to clarify. To make something clearer or more specific. Let me clarify what I meant by that.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('투 클래리파이. 더 명확하게 하거나 구체적으로 만들다. 그게 무슨 뜻이었는지 명확히 설명드릴게요.', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card vocab-item" data-en="five. on the same page. Having the same understanding as someone else. Example: Let’s make sure we’re on the same page before we continue."
+         data-ko="다섯. 온 더 세임 페이지. 서로 같은 이해를 하고 있는. 예문: 계속하기 전에 우리가 같은 이해를 하고 있는지 확인해 봅시다.">
+      <div class="word">5. on the same page</div>
+      <p class="en">Having the same understanding as someone else</p>
+      <p class="ko">서로 같은 이해를 하고 있는</p>
+      <div class="example">
+        <span class="en">“Let’s make sure we’re on the same page before we continue.”</span><br>
+        <span class="ko">“계속하기 전에 우리가 같은 이해를 하고 있는지 확인해 봅시다.”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('on the same page. Having the same understanding as someone else. Let’s make sure we’re on the same page before we continue.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('온 더 세임 페이지. 서로 같은 이해를 하고 있는. 계속하기 전에 우리가 같은 이해를 하고 있는지 확인해 봅시다.', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card vocab-item" data-en="six. to misinterpret. To understand something incorrectly. Example: I think I misinterpreted your email."
+         data-ko="여섯. 투 미스인터프릿. 잘못 해석하다, 오해하다. 예문: 제가 이메일을 잘못 해석한 것 같아요.">
+      <div class="word">6. to misinterpret</div>
+      <p class="en">To understand something incorrectly</p>
+      <p class="ko">잘못 해석하다, 오해하다</p>
+      <div class="example">
+        <span class="en">“I think I misinterpreted your email.”</span><br>
+        <span class="ko">“제가 이메일을 잘못 해석한 것 같아요.”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('to misinterpret. To understand something incorrectly. I think I misinterpreted your email.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('투 미스인터프릿. 잘못 해석하다, 오해하다. 제가 이메일을 잘못 해석한 것 같아요.', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card vocab-item" data-en="seven. to elaborate. To explain something in more detail. Example: Could you elaborate on that point?"
+         data-ko="일곱. 투 일래보레이트. 더 자세히 설명하다. 예문: 그 점에 대해 더 자세히 설명해 주시겠어요?">
+      <div class="word">7. to elaborate</div>
+      <p class="en">To explain something in more detail</p>
+      <p class="ko">더 자세히 설명하다</p>
+      <div class="example">
+        <span class="en">“Could you elaborate on that point?”</span><br>
+        <span class="ko">“그 점에 대해 더 자세히 설명해 주시겠어요?”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('to elaborate. To explain something in more detail. Could you elaborate on that point?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('투 일래보레이트. 더 자세히 설명하다. 그 점에 대해 더 자세히 설명해 주시겠어요?', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card vocab-item" data-en="eight. to read between the lines. To understand an implied meaning, not just literal words. Example: You have to read between the lines with him sometimes."
+         data-ko="여덟. 투 리드 비트윈 더 라인즈. 말의 행간을 읽다, 숨은 의미를 파악하다. 예문: 가끔은 그 사람 말의 행간을 읽어야 해요.">
+      <div class="word">8. to read between the lines</div>
+      <p class="en">To understand an implied meaning, not just literal words</p>
+      <p class="ko">말의 행간을 읽다, 숨은 의미를 파악하다</p>
+      <div class="example">
+        <span class="en">“You have to read between the lines with him sometimes.”</span><br>
+        <span class="ko">“가끔은 그 사람 말의 행간을 읽어야 해요.”</span>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('to read between the lines. To understand an implied meaning, not just literal words. You have to read between the lines with him sometimes.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('투 리드 비트윈 더 라인즈. 말의 행간을 읽다, 숨은 의미를 파악하다. 가끔은 그 사람 말의 행간을 읽어야 해요.', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== GRAMMAR ========== -->
+  <div id="grammar" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('grammar','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('grammar','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Grammar and Sentence Pattern. This week’s pattern: Indirect questions. Could you tell me blank? or I was wondering if blank. Focus: Using indirect questions to ask for clarification more politely and formally than direct questions. Key Rule: Indirect questions use statement word order, subject plus verb, not question word order, after the question phrase. Examples: Could you tell me what you meant by that comment? I was wondering if you could clarify the deadline. Practice: Make your own. Example sentences you can try: Could you tell me where the meeting is? I was wondering if we could postpone the deadline. Could you tell me what time it starts? I was wondering if you had a chance to review my email."
+         data-ko="문법과 문장 패턴. 이번 주 패턴: 간접 의문문. Could you tell me 빈칸? 또는 I was wondering if 빈칸. 포인트: 직접 질문보다 더 공손하고 격식 있게 명확히 물어보기 위해 간접 의문문을 사용합니다. 핵심 규칙: 간접 의문문에서는 질문 문구 뒤에 평서문 어순, 주어 더하기 동사를 사용합니다. 의문문 어순이 아닙니다. 예문: 그 말이 무슨 뜻이었는지 말씀해 주시겠어요? 마감일을 명확히 해 주실 수 있을지 궁금합니다. 연습: 직접 만들어 보세요. 연습해 볼 수 있는 예문: 회의가 어디서 열리는지 말씀해 주시겠어요? 마감일을 연기할 수 있을지 궁금합니다. 몇 시에 시작하는지 말씀해 주시겠어요? 제 이메일을 검토할 기회가 있으셨는지 궁금합니다.">
+      <h2>📝 Grammar & Sentence Pattern <span class="ko">문법 & 문장 패턴</span></h2>
+      <div class="pattern-box">
+        <div class="main">Indirect questions <span class="ko" style="font-size:0.9rem; font-weight:400;">간접 의문문</span></div>
+        <p style="margin-top:8px;"><strong>Could you tell me ___?</strong> &nbsp;/&nbsp; <strong>I was wondering if ___.</strong></p>
+        <p class="ko">직접 질문보다 더 공손하고 격식 있게 명확히 물어보는 방법</p>
+      </div>
+
+      <h3>Focus <span class="ko">포인트</span></h3>
+      <p class="en">Using indirect questions to ask for clarification more politely and formally than direct questions.</p>
+      <p class="ko">직접 질문보다 더 공손하고 격식 있게 명확히 물어보기 위해 간접 의문문을 사용합니다.</p>
+
+      <h3>Key Rule <span class="ko">핵심 규칙</span></h3>
+      <div class="tip">
+        Indirect questions use <strong>statement word order</strong> (subject + verb), not question word order, after the question phrase.<br>
+        <span class="ko">간접 의문문에서는 질문 문구 뒤에 <strong>평서문 어순</strong>(주어 + 동사)을 사용합니다. 의문문 어순이 아닙니다.</span>
+      </div>
+
+      <h3>Examples <span class="ko">예문</span></h3>
+      <div class="example">
+        <p class="en">◆ Could you tell me <strong>what you meant</strong> by that comment?</p>
+        <p class="ko">◆ 그 말이 무슨 뜻이었는지 말씀해 주시겠어요?</p>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('Could you tell me what you meant by that comment?', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('그 말이 무슨 뜻이었는지 말씀해 주시겠어요?', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+      <div class="example" style="margin-top:12px;">
+        <p class="en">◆ I was wondering if <strong>you could clarify</strong> the deadline.</p>
+        <p class="ko">◆ 마감일을 명확히 해 주실 수 있을지 궁금합니다.</p>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('I was wondering if you could clarify the deadline.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('마감일을 명확히 해 주실 수 있을지 궁금합니다.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+
+      <h3>Practice: Make your own <span class="ko">연습: 직접 만들어 보세요</span></h3>
+      <div class="answer-box">
+        <div class="label">Example sentences you can try <span class="ko">연습해 볼 수 있는 예문</span></div>
+        <p>• Could you tell me <em>where the meeting is</em>?</p>
+        <p class="ko" style="margin-left:12px;">회의가 어디서 열리는지 말씀해 주시겠어요?</p>
+        <p>• I was wondering if <em>we could postpone the deadline</em>.</p>
+        <p class="ko" style="margin-left:12px;">마감일을 연기할 수 있을지 궁금합니다.</p>
+        <p>• Could you tell me <em>what time it starts</em>?</p>
+        <p class="ko" style="margin-left:12px;">몇 시에 시작하는지 말씀해 주시겠어요?</p>
+        <p>• I was wondering if <em>you had a chance to review my email</em>.</p>
+        <p class="ko" style="margin-left:12px;">제 이메일을 검토할 기회가 있으셨는지 궁금합니다.</p>
+        <div class="btn-row" style="margin-top:12px;">
+          <button class="speak" onclick="speak('Could you tell me where the meeting is? I was wondering if we could postpone the deadline. Could you tell me what time it starts? I was wondering if you had a chance to review my email.', 'en')">🔊 EN Practice</button>
+          <button class="speak-ko" onclick="speak('회의가 어디서 열리는지 말씀해 주시겠어요? 마감일을 연기할 수 있을지 궁금합니다. 몇 시에 시작하는지 말씀해 주시겠어요? 제 이메일을 검토할 기회가 있으셨는지 궁금합니다.', 'ko')">🔊 KO Practice</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ACTIVITY ========== -->
+  <div id="activity" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('activity','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('activity','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Activity Time! Clarify the Instructions. Goal: Practice using indirect questions naturally to seek clarification in a realistic, slightly ambiguous scenario. How it works: Partner A gives directions for a simple task, packing a bag, folding laundry, setting up a phone, but leaves out a key detail or uses a vague word. Partner B has to stop and ask an indirect question, Could you tell me, or I was wondering if, before continuing. Do this at least twice, then switch roles with a new task. Useful phrases: Could you tell me exactly what you mean by a few things? I was wondering if you could specify which bag you mean. Could you tell me how long I should wait? I was wondering if there’s a particular order I should follow."
+         data-ko="활동 시간! 지시 사항 명확히 하기. 목표: 현실적이고 약간 모호한 상황에서 자연스럽게 간접 의문문을 사용해 명확히 물어보는 연습을 합니다. 진행 방법: 파트너 A가 간단한 작업, 가방 싸기, 빨래 개기, 폰 설정하기 등에 대한 지시를 주지만, 중요한 세부 사항을 빼먹거나 모호한 단어를 사용합니다. 파트너 B는 계속하기 전에 멈추고 간접 의문문, Could you tell me 또는 I was wondering if 로 물어봐야 합니다. 최소 두 번 한 뒤, 새로운 작업으로 역할을 바꿉니다. 유용한 표현: 정확히 몇 가지 물건이 무슨 뜻인지 말씀해 주시겠어요? 어느 가방을 말씀하시는지 구체적으로 알려주실 수 있을지 궁금합니다. 얼마나 기다려야 하는지 말씀해 주시겠어요? 따라야 할 특정 순서가 있는지 궁금합니다.">
+      <h2>🎯 Activity Time! Clarify the Instructions <span class="ko">활동 시간! 지시 사항 명확히 하기</span></h2>
+      <p class="en"><strong>Goal:</strong> Practice using indirect questions naturally to seek clarification in a realistic, slightly ambiguous scenario.</p>
+      <p class="ko"><strong>목표:</strong> 현실적이고 약간 모호한 상황에서 자연스럽게 간접 의문문을 사용해 명확히 물어보는 연습을 합니다.</p>
+
+      <h3>How it works <span class="ko">진행 방법</span></h3>
+      <ol class="activity-steps">
+        <li>
+          <strong>Partner A</strong> gives directions for a simple task (packing a bag, folding laundry, setting up a phone) but leaves out a key detail or uses a vague word.
+          <p class="ko">파트너 A가 간단한 작업(가방 싸기, 빨래 개기, 폰 설정하기 등)에 대한 지시를 주지만, 중요한 세부 사항을 빼먹거나 모호한 단어를 사용합니다.</p>
+        </li>
+        <li>
+          <strong>Partner B</strong> has to stop and ask an indirect question — “Could you tell me…” or “I was wondering if…” — before continuing.
+          <p class="ko">파트너 B는 계속하기 전에 멈추고 간접 의문문(“Could you tell me…” 또는 “I was wondering if…”)으로 물어봐야 합니다.</p>
+        </li>
+        <li>
+          Do this at least twice, then switch roles with a new task.
+          <p class="ko">최소 두 번 한 뒤, 새로운 작업으로 역할을 바꿉니다.</p>
+        </li>
+      </ol>
+
+      <div class="tip">
+        💡 <strong>Teacher tip:</strong> Demo one round yourself first, then split into groups. End while energy is high!<br>
+        <span class="ko">선생님 팁: 먼저 한 라운드를 직접 시연한 후 그룹으로 나눕니다. 에너지가 높을 때 끝내세요!</span>
+      </div>
+
+      <h3>Useful phrases to use <span class="ko">사용할 유용한 표현</span></h3>
+      <div class="example">
+        <p>• Could you tell me <em>exactly</em> what you mean by “a few things”?</p>
+        <p class="ko" style="margin-left:12px;">정확히 “몇 가지 물건”이 무슨 뜻인지 말씀해 주시겠어요?</p>
+        <p>• I was wondering if you could <em>specify</em> which bag you mean.</p>
+        <p class="ko" style="margin-left:12px;">어느 가방을 말씀하시는지 구체적으로 알려주실 수 있을지 궁금합니다.</p>
+        <p>• Could you tell me <em>how long</em> I should wait?</p>
+        <p class="ko" style="margin-left:12px;">얼마나 기다려야 하는지 말씀해 주시겠어요?</p>
+        <p>• I was wondering if there’s a particular order I should follow.</p>
+        <p class="ko" style="margin-left:12px;">따라야 할 특정 순서가 있는지 궁금합니다.</p>
+      </div>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Could you tell me exactly what you mean by a few things? I was wondering if you could specify which bag you mean. Could you tell me how long I should wait? I was wondering if there’s a particular order I should follow.', 'en')">🔊 EN Phrases</button>
+        <button class="speak-ko" onclick="speak('정확히 몇 가지 물건이 무슨 뜻인지 말씀해 주시겠어요? 어느 가방을 말씀하시는지 구체적으로 알려주실 수 있을지 궁금합니다. 얼마나 기다려야 하는지 말씀해 주시겠어요? 따라야 할 특정 순서가 있는지 궁금합니다.', 'ko')">🔊 KO Phrases</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DISCUSSION ========== -->
+  <div id="discussion" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('discussion','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('discussion','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Discussion Questions. In groups of two or three, pick a few questions to talk about. You can refer to the model answers below."
+         data-ko="토론 질문. 2명에서 3명 그룹으로 몇 가지 질문을 골라 이야기해 보세요. 아래 모범 답안을 참고할 수 있습니다.">
+      <h2>💬 Discussion Questions <span class="ko">토론 질문</span></h2>
+      <p class="en">In groups of 2-3, pick a few questions to talk about. You can refer to the model answers below.</p>
+      <p class="ko">2~3명 그룹으로 몇 가지 질문을 골라 이야기해 보세요. 아래 모범 답안을 참고할 수 있습니다.</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="card discussion-q" data-en="Question one. What English word did you nod along to for months before finally looking it up? Model Answer: For the longest time I kept nodding along whenever people said nuance, but I wasn’t really sure what it meant. I finally looked it up and realized how useful the word is for describing subtle differences."
+         data-ko="질문 하나. 몇 달 동안 그냥 고개만 끄덕이다가 결국 찾아본 영어 단어가 있나요? 모범 답안: 사람들이 뉘앙스라는 말을 할 때마다 한참 동안 그냥 고개만 끄덕였는데, 정확히 무슨 뜻인지 몰랐어요. 결국 찾아보니 미묘한 차이를 설명할 때 정말 유용한 단어라는 걸 알게 됐습니다.">
+      <p><strong>1.</strong> <span class="en">What English word did you nod along to for months before finally looking it up?</span></p>
+      <p class="ko">몇 달 동안 그냥 고개만 끄덕이다가 결국 찾아본 영어 단어가 있나요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('What English word did you nod along to for months before finally looking it up?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('몇 달 동안 그냥 고개만 끄덕이다가 결국 찾아본 영어 단어가 있나요?', 'ko')">🔊 KO</button>
+      </div>
+      <button class="toggle-answer" onclick="toggleAnswer(this)">모범 답안 보기</button>
+      <div class="answer-content hidden">
+        <div class="answer-box">
+          <div class="label">English Model Answer</div>
+          <p>For the longest time I kept nodding along whenever people said “nuance,” but I wasn’t really sure what it meant. I finally looked it up and realized how useful the word is for describing subtle differences.</p>
+        </div>
+        <div class="answer-box" style="background:#fef9f3;border-color:#f5cba7;">
+          <div class="label" style="color:var(--accent);">한국어 번역</div>
+          <p>사람들이 “nuance”라는 말을 할 때마다 한참 동안 그냥 고개만 끄덕였는데, 정확히 무슨 뜻인지 몰랐어요. 결국 찾아보니 미묘한 차이를 설명할 때 정말 유용한 단어라는 걸 알게 됐습니다.</p>
+        </div>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('For the longest time I kept nodding along whenever people said nuance, but I wasn’t really sure what it meant. I finally looked it up and realized how useful the word is for describing subtle differences.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('사람들이 뉘앙스라는 말을 할 때마다 한참 동안 그냥 고개만 끄덕였는데, 정확히 무슨 뜻인지 몰랐어요. 결국 찾아보니 미묘한 차이를 설명할 때 정말 유용한 단어라는 걸 알게 됐습니다.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card discussion-q" data-en="Question two. Have you ever misinterpreted an email or message? What happened? Model Answer: Yes. Once my manager wrote Let’s discuss this later and I thought she was unhappy with my work. It turned out she was just busy and wanted a proper conversation. I had completely misinterpreted her tone."
+         data-ko="질문 둘. 이메일이나 메시지를 잘못 해석한 적이 있나요? 무슨 일이 있었나요? 모범 답안: 네. 한번은 상사가 나중에 얘기해요라고 써서 제가 일을 못해서 화가 난 줄 알았어요. 알고 보니 그냥 바빠서 제대로 된 대화를 하고 싶었던 거였어요. 완전히 어조를 잘못 해석한 거죠.">
+      <p><strong>2.</strong> <span class="en">Have you ever misinterpreted an email or message? What happened?</span></p>
+      <p class="ko">이메일이나 메시지를 잘못 해석한 적이 있나요? 무슨 일이 있었나요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Have you ever misinterpreted an email or message? What happened?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('이메일이나 메시지를 잘못 해석한 적이 있나요? 무슨 일이 있었나요?', 'ko')">🔊 KO</button>
+      </div>
+      <button class="toggle-answer" onclick="toggleAnswer(this)">모범 답안 보기</button>
+      <div class="answer-content hidden">
+        <div class="answer-box">
+          <div class="label">English Model Answer</div>
+          <p>Yes. Once my manager wrote “Let’s discuss this later” and I thought she was unhappy with my work. It turned out she was just busy and wanted a proper conversation. I had completely misinterpreted her tone.</p>
+        </div>
+        <div class="answer-box" style="background:#fef9f3;border-color:#f5cba7;">
+          <div class="label" style="color:var(--accent);">한국어 번역</div>
+          <p>네. 한번은 상사가 “나중에 얘기해요”라고 써서 제가 일을 못해서 화가 난 줄 알았어요. 알고 보니 그냥 바빠서 제대로 된 대화를 하고 싶었던 거였어요. 완전히 어조를 잘못 해석한 거죠.</p>
+        </div>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('Yes. Once my manager wrote Let’s discuss this later and I thought she was unhappy with my work. It turned out she was just busy and wanted a proper conversation. I had completely misinterpreted her tone.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('네. 한번은 상사가 나중에 얘기해요라고 써서 제가 일을 못해서 화가 난 줄 알았어요. 알고 보니 그냥 바빠서 제대로 된 대화를 하고 싶었던 거였어요. 완전히 어조를 잘못 해석한 거죠.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card discussion-q" data-en="Question three. Do you think it’s better to ask many clarifying questions or to figure things out independently first? Model Answer: I think a balance is best. Trying to figure things out first shows initiative, but if you’re stuck for too long, asking a clarifying question saves everyone’s time. In professional settings, a well-timed question is usually appreciated."
+         data-ko="질문 셋. 명확히 하는 질문을 많이 하는 게 나을까요, 아니면 먼저 스스로 알아내는 게 나을까요? 모범 답안: 균형이 가장 좋다고 생각해요. 먼저 스스로 알아내려고 하는 것은 적극성을 보여주지만, 너무 오래 막혀 있으면 명확히 물어보는 게 모두의 시간을 아껴줍니다. 직장에서는 타이밍 좋은 질문이 보통 환영받아요.">
+      <p><strong>3.</strong> <span class="en">Do you think it’s better to ask many clarifying questions or to figure things out independently first?</span></p>
+      <p class="ko">명확히 하는 질문을 많이 하는 게 나을까요, 아니면 먼저 스스로 알아내는 게 나을까요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Do you think it’s better to ask many clarifying questions or to figure things out independently first?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('명확히 하는 질문을 많이 하는 게 나을까요, 아니면 먼저 스스로 알아내는 게 나을까요?', 'ko')">🔊 KO</button>
+      </div>
+      <button class="toggle-answer" onclick="toggleAnswer(this)">모범 답안 보기</button>
+      <div class="answer-content hidden">
+        <div class="answer-box">
+          <div class="label">English Model Answer</div>
+          <p>I think a balance is best. Trying to figure things out first shows initiative, but if you’re stuck for too long, asking a clarifying question saves everyone’s time. In professional settings, a well-timed question is usually appreciated.</p>
+        </div>
+        <div class="answer-box" style="background:#fef9f3;border-color:#f5cba7;">
+          <div class="label" style="color:var(--accent);">한국어 번역</div>
+          <p>균형이 가장 좋다고 생각해요. 먼저 스스로 알아내려고 하는 것은 적극성을 보여주지만, 너무 오래 막혀 있으면 명확히 물어보는 게 모두의 시간을 아껴줍니다. 직장에서는 타이밍 좋은 질문이 보통 환영받아요.</p>
+        </div>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('I think a balance is best. Trying to figure things out first shows initiative, but if you’re stuck for too long, asking a clarifying question saves everyone’s time. In professional settings, a well-timed question is usually appreciated.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('균형이 가장 좋다고 생각해요. 먼저 스스로 알아내려고 하는 것은 적극성을 보여주지만, 너무 오래 막혀 있으면 명확히 물어보는 게 모두의 시간을 아껴줍니다. 직장에서는 타이밍 좋은 질문이 보통 환영받아요.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card discussion-q" data-en="Question four. What’s a situation where reading between the lines is especially important? Model Answer: In job interviews or performance reviews, people often soften negative feedback. If someone says There’s room for improvement, you usually need to read between the lines to understand how serious the issue is."
+         data-ko="질문 넷. 행간을 읽는 것이 특히 중요한 상황은 언제인가요? 모범 답안: 면접이나 성과 평가에서는 사람들이 부정적인 피드백을 부드럽게 표현하는 경우가 많아요. 개선의 여지가 있다고 하면, 문제가 얼마나 심각한지 행간을 읽어야 하는 경우가 많습니다.">
+      <p><strong>4.</strong> <span class="en">What’s a situation where reading between the lines is especially important?</span></p>
+      <p class="ko">행간을 읽는 것이 특히 중요한 상황은 언제인가요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('What’s a situation where reading between the lines is especially important?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('행간을 읽는 것이 특히 중요한 상황은 언제인가요?', 'ko')">🔊 KO</button>
+      </div>
+      <button class="toggle-answer" onclick="toggleAnswer(this)">모범 답안 보기</button>
+      <div class="answer-content hidden">
+        <div class="answer-box">
+          <div class="label">English Model Answer</div>
+          <p>In job interviews or performance reviews, people often soften negative feedback. If someone says “There’s room for improvement,” you usually need to read between the lines to understand how serious the issue is.</p>
+        </div>
+        <div class="answer-box" style="background:#fef9f3;border-color:#f5cba7;">
+          <div class="label" style="color:var(--accent);">한국어 번역</div>
+          <p>면접이나 성과 평가에서는 사람들이 부정적인 피드백을 부드럽게 표현하는 경우가 많아요. “개선의 여지가 있다”고 하면, 문제가 얼마나 심각한지 행간을 읽어야 하는 경우가 많습니다.</p>
+        </div>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('In job interviews or performance reviews, people often soften negative feedback. If someone says There’s room for improvement, you usually need to read between the lines to understand how serious the issue is.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('면접이나 성과 평가에서는 사람들이 부정적인 피드백을 부드럽게 표현하는 경우가 많아요. 개선의 여지가 있다고 하면, 문제가 얼마나 심각한지 행간을 읽어야 하는 경우가 많습니다.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card discussion-q" data-en="Question five. How do you make sure you and someone else are on the same page during an important conversation? Model Answer: I like to summarize what I’ve heard and ask for confirmation. For example: So just to make sure we’re on the same page, you’re saying we should prioritize A over B, right? It takes a few extra seconds but prevents a lot of confusion later."
+         data-ko="질문 다섯. 중요한 대화 중에 서로 같은 이해를 하고 있는지 어떻게 확인하나요? 모범 답안: 제가 들은 내용을 요약하고 확인을 요청하는 방식을 좋아해요. 예를 들어 우리가 같은 이해를 하고 있는지 확인하고 싶은데, A를 B보다 우선시해야 한다는 말씀이시죠? 라고 말하는 거죠. 몇 초가 더 걸리지만 나중에 많은 혼란을 막아줍니다.">
+      <p><strong>5.</strong> <span class="en">How do you make sure you and someone else are “on the same page” during an important conversation?</span></p>
+      <p class="ko">중요한 대화 중에 서로 “같은 이해”를 하고 있는지 어떻게 확인하나요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('How do you make sure you and someone else are on the same page during an important conversation?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('중요한 대화 중에 서로 같은 이해를 하고 있는지 어떻게 확인하나요?', 'ko')">🔊 KO</button>
+      </div>
+      <button class="toggle-answer" onclick="toggleAnswer(this)">모범 답안 보기</button>
+      <div class="answer-content hidden">
+        <div class="answer-box">
+          <div class="label">English Model Answer</div>
+          <p>I like to summarize what I’ve heard and ask for confirmation. For example: “So just to make sure we’re on the same page, you’re saying we should prioritize A over B, right?” It takes a few extra seconds but prevents a lot of confusion later.</p>
+        </div>
+        <div class="answer-box" style="background:#fef9f3;border-color:#f5cba7;">
+          <div class="label" style="color:var(--accent);">한국어 번역</div>
+          <p>제가 들은 내용을 요약하고 확인을 요청하는 방식을 좋아해요. 예를 들어 “우리가 같은 이해를 하고 있는지 확인하고 싶은데, A를 B보다 우선시해야 한다는 말씀이시죠?”라고 말하는 거죠. 몇 초가 더 걸리지만 나중에 많은 혼란을 막아줍니다.</p>
+        </div>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('I like to summarize what I’ve heard and ask for confirmation. For example: So just to make sure we’re on the same page, you’re saying we should prioritize A over B, right? It takes a few extra seconds but prevents a lot of confusion later.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('제가 들은 내용을 요약하고 확인을 요청하는 방식을 좋아해요. 예를 들어 우리가 같은 이해를 하고 있는지 확인하고 싶은데, A를 B보다 우선시해야 한다는 말씀이시죠? 라고 말하는 거죠. 몇 초가 더 걸리지만 나중에 많은 혼란을 막아줍니다.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="card discussion-q" data-en="Question six. Do you think ambiguity in communication is usually a mistake, or sometimes intentional? Why? Model Answer: I think it’s sometimes intentional. Politicians and diplomats often use ambiguous language on purpose so they can keep options open or avoid offending anyone. In everyday life, though, most ambiguity is probably just carelessness or assuming the other person already knows the context."
+         data-ko="질문 여섯. 의사소통에서 모호함은 보통 실수일까요, 아니면 가끔 의도적인 것일까요? 왜 그렇게 생각하나요? 모범 답안: 가끔은 의도적이라고 생각해요. 정치인이나 외교관들은 선택지를 열어두거나 누구를 불쾌하게 하지 않기 위해 일부러 모호한 표현을 쓰곤 합니다. 하지만 일상생활에서는 대부분의 모호함이 그냥 부주의하거나 상대가 이미 맥락을 알고 있다고 가정해서 생기는 것 같아요.">
+      <p><strong>6.</strong> <span class="en">Do you think ambiguity in communication is usually a mistake, or sometimes intentional? Why?</span></p>
+      <p class="ko">의사소통에서 모호함은 보통 실수일까요, 아니면 가끔 의도적인 것일까요? 왜 그렇게 생각하나요?</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Do you think ambiguity in communication is usually a mistake, or sometimes intentional? Why?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('의사소통에서 모호함은 보통 실수일까요, 아니면 가끔 의도적인 것일까요? 왜 그렇게 생각하나요?', 'ko')">🔊 KO</button>
+      </div>
+      <button class="toggle-answer" onclick="toggleAnswer(this)">모범 답안 보기</button>
+      <div class="answer-content hidden">
+        <div class="answer-box">
+          <div class="label">English Model Answer</div>
+          <p>I think it’s sometimes intentional. Politicians and diplomats often use ambiguous language on purpose so they can keep options open or avoid offending anyone. In everyday life, though, most ambiguity is probably just carelessness or assuming the other person already knows the context.</p>
+        </div>
+        <div class="answer-box" style="background:#fef9f3;border-color:#f5cba7;">
+          <div class="label" style="color:var(--accent);">한국어 번역</div>
+          <p>가끔은 의도적이라고 생각해요. 정치인이나 외교관들은 선택지를 열어두거나 누구를 불쾌하게 하지 않기 위해 일부러 모호한 표현을 쓰곤 합니다. 하지만 일상생활에서는 대부분의 모호함이 그냥 부주의하거나 상대가 이미 맥락을 알고 있다고 가정해서 생기는 것 같아요.</p>
+        </div>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('I think it’s sometimes intentional. Politicians and diplomats often use ambiguous language on purpose so they can keep options open or avoid offending anyone. In everyday life, though, most ambiguity is probably just carelessness or assuming the other person already knows the context.', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('가끔은 의도적이라고 생각해요. 정치인이나 외교관들은 선택지를 열어두거나 누구를 불쾌하게 하지 않기 위해 일부러 모호한 표현을 쓰곤 합니다. 하지만 일상생활에서는 대부분의 모호함이 그냥 부주의하거나 상대가 이미 맥락을 알고 있다고 가정해서 생기는 것 같아요.', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== REVIEW ========== -->
+  <div id="review" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('review','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('review','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Review and Feedback. Today we practiced: Students practiced asking for clarification using indirect questions, Could you tell me, I was wondering if, along with vocabulary like ambiguous, rephrase, and on the same page. Natural ways to say it: Just to make sure I understand. A natural lead-in before restating something to confirm. Sorry, can we back up for a second? A common, casual way to ask for clarification mid-conversation. Think about it: Do you think most misunderstandings come from unclear communication, or from people not asking enough clarifying questions? Why?"
+         data-ko="복습과 피드백. 오늘 연습한 내용: 학생들은 간접 의문문, Could you tell me, I was wondering if 를 사용해 명확히 물어보는 연습과 함께 앰비규어스, 리프레이즈, 온 더 세임 페이지 같은 어휘를 연습했습니다. 자연스러운 표현: 제대로 이해했는지 확인하고 싶은데요. 무언가를 다시 말하며 확인하기 전에 자연스럽게 쓰는 도입 표현. 죄송한데, 잠깐 뒤로 돌아갈 수 있을까요? 대화 중간에 명확히 물어보는 흔하고 캐주얼한 표현. 생각해 보세요: 대부분의 오해는 불명확한 의사소통 때문에 생길까요, 아니면 사람들이 명확히 물어보는 질문을 충분히 하지 않아서 생길까요? 왜 그렇게 생각하나요?">
+      <h2>🔄 Review & Feedback <span class="ko">복습 & 피드백</span></h2>
+      <h3>Today we practiced <span class="ko">오늘 연습한 내용</span></h3>
+      <p class="en">Students practiced asking for clarification using indirect questions (“Could you tell me…”, “I was wondering if…”), along with vocabulary like “ambiguous,” “rephrase,” and “on the same page.”</p>
+      <p class="ko">학생들은 간접 의문문(“Could you tell me…”, “I was wondering if…”)을 사용해 명확히 물어보는 연습과 함께 “ambiguous,” “rephrase,” “on the same page” 같은 어휘를 연습했습니다.</p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Students practiced asking for clarification using indirect questions. Could you tell me, I was wondering if, along with vocabulary like ambiguous, rephrase, and on the same page.', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('학생들은 간접 의문문을 사용해 명확히 물어보는 연습과 함께 앰비규어스, 리프레이즈, 온 더 세임 페이지 같은 어휘를 연습했습니다.', 'ko')">🔊 KO</button>
+      </div>
+
+      <h3>Natural ways to say it <span class="ko">자연스러운 표현</span></h3>
+      <div class="example">
+        <p class="en"><strong>“Just to make sure I understand…”</strong><br>
+        a natural lead-in before restating something to confirm</p>
+        <p class="ko">무언가를 다시 말하며 확인하기 전에 자연스럽게 쓰는 도입 표현<br>
+        (제대로 이해했는지 확인하고 싶은데요…)</p>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('Just to make sure I understand', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('제대로 이해했는지 확인하고 싶은데요', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+      <div class="example" style="margin-top:12px;">
+        <p class="en"><strong>“Sorry, can we back up for a second?”</strong><br>
+        a common, casual way to ask for clarification mid-conversation</p>
+        <p class="ko">대화 중간에 명확히 물어보는 흔하고 캐주얼한 표현<br>
+        (죄송한데, 잠깐 뒤로 돌아갈 수 있을까요?)</p>
+        <div class="btn-row">
+          <button class="speak" onclick="speak('Sorry, can we back up for a second?', 'en')">🔊 EN</button>
+          <button class="speak-ko" onclick="speak('죄송한데, 잠깐 뒤로 돌아갈 수 있을까요?', 'ko')">🔊 KO</button>
+        </div>
+      </div>
+
+      <h3>Think about it <span class="ko">생각해 보세요</span></h3>
+      <div class="tip">
+        <p class="en">Do you think most misunderstandings come from unclear communication, or from people not asking enough clarifying questions? Why?</p>
+        <p class="ko">대부분의 오해는 불명확한 의사소통 때문에 생길까요, 아니면 사람들이 명확히 물어보는 질문을 충분히 하지 않아서 생길까요? 왜 그렇게 생각하나요?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== GOSPEL ========== -->
+  <div id="gospel" class="section">
+    <div class="section-read-bar">
+      <span>📢 이 섹션 전체 읽기</span>
+      <button class="read-all" onclick="readSection('gospel','en')">🔊 Read All in English</button>
+      <button class="read-all" onclick="readSection('gospel','ko')">🔊 한글로 전체 읽기</button>
+    </div>
+
+    <div class="card" data-en="Gospel Message. Choose one of the three options below. Read it warmly, extend the invitation, and never pressure anyone."
+         data-ko="복음 메시지. 아래 세 가지 중 하나를 선택해서 사용하세요. 따뜻하게 읽고, 초대하며, 절대 강요하지 않습니다.">
+      <h2>🙏 Gospel Message <span class="ko">복음 메시지</span></h2>
+      <p class="en">Choose one of the three options below. Read it warmly, extend the invitation, and never pressure anyone.</p>
+      <p class="ko"><strong>아래 세 가지 중 하나를 선택해서 사용하세요. 따뜻하게 읽고, 초대하며, 절대 강요하지 않습니다.</strong></p>
+    </div>
+
+    <!-- Option 1 -->
+    <div class="card gospel-option" data-en="Option one of three. They Asked Him to Explain It Plainly. After Jesus taught the crowd using parables, His own disciples came to Him privately and asked what He’d meant. He didn’t make them guess or work it out alone. He explained it plainly, one on one. Would you like to learn more about asking God to explain things plainly? Resource: Mark chapter four, verses thirty-three to thirty-four."
+         data-ko="옵션 하나. 제자들이 분명하게 설명해 달라고 요청했습니다. 예수님께서 비유로 군중을 가르치신 후, 제자들이 조용히 다가와 그 뜻이 무엇인지 물었습니다. 예수님은 그들이 혼자 추측하거나 알아내도록 두지 않으시고, 일대일로 분명하게 설명해 주셨습니다. 하나님께 분명하게 설명해 주시기를 구하는 것에 대해 더 배우고 싶으신가요? 참고 성구: 마가복음 4장 33-34절.">
+      <h3>Option 1 of 3 — They Asked Him to Explain It Plainly<br><span class="ko" style="font-size:0.95rem; font-weight:400;">옵션 1 — 제자들이 분명하게 설명해 달라고 요청했습니다</span></h3>
+      <p class="en">After Jesus taught the crowd using parables, His own disciples came to Him privately and asked what He’d meant. He didn’t make them guess or work it out alone — He explained it plainly, one on one.</p>
+      <p class="ko">예수님께서 비유로 군중을 가르치신 후, 제자들이 조용히 다가와 그 뜻이 무엇인지 물었습니다. 예수님은 그들이 혼자 추측하거나 알아내도록 두지 않으시고, 일대일로 분명하게 설명해 주셨습니다.</p>
+      <p style="margin-top:10px;"><strong>◆ Would you like to learn more about asking God to explain things plainly?</strong></p>
+      <p class="ko">◆ 하나님께 분명하게 설명해 주시기를 구하는 것에 대해 더 배우고 싶으신가요?</p>
+      <p style="margin-top:8px; font-size:0.9rem;"><strong>Resource:</strong> Mark 4:33-34 / 마가복음 4:33-34<br>
+      <a href="https://www.churchofjesuschrist.org/study/scriptures/nt/mark/4?lang=eng&id=p33-p34#p33" target="_blank">churchofjesuschrist.org</a></p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('After Jesus taught the crowd using parables, His own disciples came to Him privately and asked what He’d meant. He didn’t make them guess or work it out alone — He explained it plainly, one on one. Would you like to learn more about asking God to explain things plainly?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('예수님께서 비유로 군중을 가르치신 후, 제자들이 조용히 다가와 그 뜻이 무엇인지 물었습니다. 예수님은 그들이 혼자 추측하거나 알아내도록 두지 않으시고, 일대일로 분명하게 설명해 주셨습니다. 하나님께 분명하게 설명해 주시기를 구하는 것에 대해 더 배우고 싶으신가요?', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="card gospel-option" data-en="Option two of three. He Prayed All Day, Then Kept Praying. Enos went hunting, but a phrase his father had taught him about eternal life sank so deep into his heart that he began to pray, and kept praying, through the whole day and into the night, until he received an answer. Would you like to learn more about praying until you receive an answer? Resource: Enos chapter one, verses one to eight."
+         data-ko="옵션 둘. 그는 하루 종일 기도하고, 계속해서 기도했습니다. 이노스가 사냥을 나갔을 때, 아버지가 가르쳐 주신 영생에 관한 말씀이 마음에 깊이 들어와 기도를 시작했고, 하루 종일 그리고 밤까지 계속 기도하여 결국 응답을 받았습니다. 응답을 받을 때까지 기도하는 것에 대해 더 배우고 싶으신가요? 참고 성구: 이노스서 1장 1-8절.">
+      <h3>Option 2 of 3 — He Prayed All Day, Then Kept Praying<br><span class="ko" style="font-size:0.95rem; font-weight:400;">옵션 2 — 그는 하루 종일 기도하고, 계속해서 기도했습니다</span></h3>
+      <p class="en">Enos went hunting, but a phrase his father had taught him about eternal life sank so deep into his heart that he began to pray — and kept praying, through the whole day and into the night, until he received an answer.</p>
+      <p class="ko">이노스가 사냥을 나갔을 때, 아버지가 가르쳐 주신 영생에 관한 말씀이 마음에 깊이 들어와 기도를 시작했고, 하루 종일 그리고 밤까지 계속 기도하여 결국 응답을 받았습니다.</p>
+      <p style="margin-top:10px;"><strong>◆ Would you like to learn more about praying until you receive an answer?</strong></p>
+      <p class="ko">◆ 응답을 받을 때까지 기도하는 것에 대해 더 배우고 싶으신가요?</p>
+      <p style="margin-top:8px; font-size:0.9rem;"><strong>Resource:</strong> Enos 1:1-8 / 이노스서 1:1-8<br>
+      <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/enos/1?lang=eng&id=p1-p8#p1" target="_blank">churchofjesuschrist.org</a></p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Enos went hunting, but a phrase his father had taught him about eternal life sank so deep into his heart that he began to pray — and kept praying, through the whole day and into the night, until he received an answer. Would you like to learn more about praying until you receive an answer?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('이노스가 사냥을 나갔을 때, 아버지가 가르쳐 주신 영생에 관한 말씀이 마음에 깊이 들어와 기도를 시작했고, 하루 종일 그리고 밤까지 계속 기도하여 결국 응답을 받았습니다. 응답을 받을 때까지 기도하는 것에 대해 더 배우고 싶으신가요?', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+
+    <!-- Option 3 -->
+    <div class="card gospel-option" data-en="Option three of three. Prayer Is How This Actually Works. Real peace doesn’t come from having no questions — it comes from bringing those questions straight to God, honestly, and trusting He hears them. Would you like to learn more about bringing your questions to God? Resource: Principles of Peace: Prayer."
+         data-ko="옵션 셋. 기도가 실제로 작동하는 방식입니다. 진정한 평안은 질문이 없는 상태에서 오는 것이 아니라, 그 질문들을 정직하게 하나님께 가져가고 그분이 들으신다는 것을 신뢰하는 데서 옵니다. 자신의 질문을 하나님께 가져가는 것에 대해 더 배우고 싶으신가요? 참고 자료: 평안의 원리: 기도.">
+      <h3>Option 3 of 3 — Prayer Is How This Actually Works<br><span class="ko" style="font-size:0.95rem; font-weight:400;">옵션 3 — 기도가 실제로 작동하는 방식입니다</span></h3>
+      <p class="en">Real peace doesn’t come from having no questions — it comes from bringing those questions straight to God, honestly, and trusting He hears them.</p>
+      <p class="ko">진정한 평안은 질문이 없는 상태에서 오는 것이 아니라, 그 질문들을 정직하게 하나님께 가져가고 그분이 들으신다는 것을 신뢰하는 데서 옵니다.</p>
+      <p style="margin-top:10px;"><strong>◆ Would you like to learn more about bringing your questions to God?</strong></p>
+      <p class="ko">◆ 자신의 질문을 하나님께 가져가는 것에 대해 더 배우고 싶으신가요?</p>
+      <p style="margin-top:8px; font-size:0.9rem;"><strong>Resource:</strong> Principles of Peace: Prayer / 평안의 원리: 기도<br>
+      <a href="https://www.churchofjesuschrist.org/media/video/2017-02-6700-principles-of-peace-prayer-princeofpeace?lang=eng" target="_blank">churchofjesuschrist.org</a></p>
+      <div class="btn-row">
+        <button class="speak" onclick="speak('Real peace doesn’t come from having no questions — it comes from bringing those questions straight to God, honestly, and trusting He hears them. Would you like to learn more about bringing your questions to God?', 'en')">🔊 EN</button>
+        <button class="speak-ko" onclick="speak('진정한 평안은 질문이 없는 상태에서 오는 것이 아니라, 그 질문들을 정직하게 하나님께 가져가고 그분이 들으신다는 것을 신뢰하는 데서 옵니다. 자신의 질문을 하나님께 가져가는 것에 대해 더 배우고 싶으신가요?', 'ko')">🔊 KO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Just Start Speaking</span>
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:12.5%"></div></div>
+  <span id="sectionLabel">Overview</span>
+</footer>
+
+<script>
+  // Navigation
+  const sections = ['overview','warmup','vocab','grammar','activity','discussion','review','gospel'];
+  const labels = ['Overview','Warm-up','Vocabulary','Grammar','Activity','Discussion','Review','Gospel'];
+  const navBtns = document.querySelectorAll('nav button');
+  
+  navBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      stopSpeaking();
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(sections[i]).classList.add('active');
+      navBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('progress').style.width = ((i+1)/sections.length*100) + '%';
+      document.getElementById('sectionLabel').textContent = labels[i];
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // Toggle answer
+  function toggleAnswer(btn) {
+    const content = btn.nextElementSibling;
+    content.classList.toggle('hidden');
+    btn.textContent = content.classList.contains('hidden') ? '모범 답안 보기' : '모범 답안 숨기기';
+  }
+
+  // Speech Synthesis
+  let voices = [];
+  const enSelect = document.getElementById('enVoice');
+  const koSelect = document.getElementById('koVoice');
+
+  function loadVoices() {
+    voices = speechSynthesis.getVoices();
+    enSelect.innerHTML = '';
+    koSelect.innerHTML = '';
+    
+    // Prefer American English (en-US)
+    const enUS = voices.filter(v => v.lang === 'en-US' || v.lang === 'en_US');
+    const enVoices = enUS.length > 0 ? enUS : voices.filter(v => v.lang.startsWith('en'));
+    
+    // Prefer Korean (ko-KR)
+    const koKR = voices.filter(v => v.lang === 'ko-KR' || v.lang === 'ko_KR');
+    const koVoices = koKR.length > 0 ? koKR : voices.filter(v => v.lang.startsWith('ko'));
+    
+    if (enVoices.length === 0) {
+      enSelect.innerHTML = '<option value="">Default (en-US)</option>';
+    } else {
+      // Show only one primary American English voice by default
+      const preferred = enVoices.find(v => v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Microsoft') || v.name.includes('Female')) || enVoices[0];
+      const opt = document.createElement('option');
+      opt.value = preferred.name;
+      opt.textContent = `${preferred.name} (en-US)`;
+      opt.selected = true;
+      enSelect.appendChild(opt);
+    }
+    
+    if (koVoices.length === 0) {
+      koSelect.innerHTML = '<option value="">Default (ko-KR)</option>';
+    } else {
+      // Show only one primary Korean voice by default
+      const preferred = koVoices.find(v => v.name.includes('Google') || v.name.includes('Yuna') || v.name.includes('Microsoft') || v.name.includes('InJoon') || v.name.includes('SunHi')) || koVoices[0];
+      const opt = document.createElement('option');
+      opt.value = preferred.name;
+      opt.textContent = `${preferred.name} (ko-KR)`;
+      opt.selected = true;
+      koSelect.appendChild(opt);
+    }
+  }
+
+  speechSynthesis.onvoiceschanged = loadVoices;
+  loadVoices();
+
+  function speak(text, lang) {
+    stopSpeaking();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang === 'ko' ? 'ko-KR' : 'en-US';
+    utter.rate = lang === 'ko' ? 0.95 : 0.9;
+    
+    const selectedName = lang === 'ko' ? koSelect.value : enSelect.value;
+    const voice = voices.find(v => v.name === selectedName);
+    if (voice) utter.voice = voice;
+    
+    utter.onend = () => {
+      document.querySelectorAll('button.speak, button.speak-ko, button.read-all').forEach(b => b.classList.remove('playing'));
+    };
+    
+    speechSynthesis.speak(utter);
+  }
+
+  function stopSpeaking() {
+    speechSynthesis.cancel();
+    document.querySelectorAll('button.speak, button.speak-ko, button.read-all').forEach(b => b.classList.remove('playing'));
+  }
+
+  // Read entire section
+  function readSection(sectionId, lang) {
+    stopSpeaking();
+    const section = document.getElementById(sectionId);
+    const cards = section.querySelectorAll('[data-en], [data-ko]');
+    let texts = [];
+    
+    cards.forEach(card => {
+      const text = lang === 'en' ? card.getAttribute('data-en') : card.getAttribute('data-ko');
+      if (text && text.trim()) texts.push(text.trim());
+    });
+    
+    if (texts.length === 0) return;
+    
+    // Highlight the button
+    const btns = section.querySelectorAll('.read-all');
+    btns.forEach(b => {
+      if ((lang === 'en' && b.textContent.includes('English')) || 
+          (lang === 'ko' && b.textContent.includes('한글'))) {
+        b.classList.add('playing');
+      }
+    });
+    
+    let index = 0;
+    function speakNext() {
+      if (index >= texts.length) {
+        document.querySelectorAll('button.read-all').forEach(b => b.classList.remove('playing'));
+        return;
+      }
+      const utter = new SpeechSynthesisUtterance(texts[index]);
+      utter.lang = lang === 'ko' ? 'ko-KR' : 'en-US';
+      utter.rate = lang === 'ko' ? 0.95 : 0.9;
+      
+      const selectedName = lang === 'ko' ? koSelect.value : enSelect.value;
+      const voice = voices.find(v => v.name === selectedName);
+      if (voice) utter.voice = voice;
+      
+      utter.onend = () => {
+        index++;
+        // small pause between cards
+        setTimeout(speakNext, 400);
+      };
+      speechSynthesis.speak(utter);
+    }
+    speakNext();
+  }
+
+  // Make speak buttons show playing state
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('speak') || e.target.classList.contains('speak-ko')) {
+      if (!e.target.textContent.includes('Stop')) {
+        setTimeout(() => e.target.classList.add('playing'), 50);
+      }
+    }
+  });
+</script>
+</body>
+</html>
